@@ -8,6 +8,8 @@ import FeedScreen from './screens/FeedScreen';
 import MyNotesScreen from './screens/MyNotesScreen';
 import NoteScreen from './screens/NoteScreen';
 
+import { FontAwesome5 } from '@expo/vector-icons';
+
 
 const Tab = createBottomTabNavigator();
 const FeedStack = createStackNavigator();
@@ -45,7 +47,29 @@ function FavoritesStackScreen () {
 const Main = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        initialRouteName="Feed"
+        activeColor='#f0f'
+        inactiveColor='#555'
+        barStyle={{
+          backgroundColor:'#999'
+        }}
+        screenOptions={({route}) => ({
+          tabBarIcon:({focused, size, color}) => {
+            let iconName;
+            if( route.name === 'Feed') {
+              iconName = 'home';
+            } else if (route.name === 'MyNotes') { 
+              iconName = 'bed';
+            } else {
+              iconName = 'star'
+            }
+            color = focused ? '#f0f' : "#555";
+            size = focused ? 24 : 20;
+            return <FontAwesome5 name={iconName} size={size} color={color}/>;
+          },
+        })}
+      >
         <Tab.Screen name='Feed' component={FeedStackScreen} />
         <Tab.Screen name='MyNotes' component={MyNotesStackScreen} />
         <Tab.Screen name='Favorites' component={FavoritesStackScreen} />
