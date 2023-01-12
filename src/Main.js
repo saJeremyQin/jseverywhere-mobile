@@ -18,9 +18,13 @@ const FavoritesStack = createStackNavigator();
 
 function FeedStackScreen () {
   return (
-    <FeedStack.Navigator>
+    <FeedStack.Navigator 
+      // screenOptions={
+      //   {headerShown: false}
+      // }
+    >
       <FeedStack.Screen name="FeedScreen" component={FeedScreen} />
-      <FeedStack.Screen name="Note" component={NoteScreen} />
+      <FeedStack.Screen name="NoteScreen" component={NoteScreen} />
     </FeedStack.Navigator>
   );
 }
