@@ -18,6 +18,8 @@ const notes = [
 ];
 
 const NoteFeed = () => {    
+    // only screen components receive navigation prop automatically!
+    // if you wish to access the navigation prop in any of your components, you may use the useNavigation hook.
     const navigation = useNavigation();
 
     return (
@@ -25,7 +27,6 @@ const NoteFeed = () => {
             <FlatList 
                 data={notes}
                 keyExtractor = {({id}) => id.toString()}
-
                 renderItem = {({item}) => (               
                     <Pressable 
                         style={styles.feedview}
