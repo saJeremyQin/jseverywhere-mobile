@@ -8,6 +8,7 @@ import MyNotesScreen from './MyNotesScreen';
 import NoteScreen from './NoteScreen';
 
 import { FontAwesome5 } from '@expo/vector-icons';
+import { isNonEmptyArray } from '@apollo/client/utilities';
 
 
 const Tab = createBottomTabNavigator();
@@ -17,7 +18,9 @@ const FavoritesStack = createStackNavigator();
 
 function FeedStackScreen () {
   return (
-    <FeedStack.Navigator>
+    <FeedStack.Navigator screenOptions={
+      {headerShown: false}
+    }>
       <FeedStack.Screen name="FeedScreen" component={FeedScreen} />
       <FeedStack.Screen name="NoteScreen" component={NoteScreen} />
     </FeedStack.Navigator>
@@ -26,7 +29,9 @@ function FeedStackScreen () {
 
 function MyNotesStackScreen () {
   return (
-    <MyNotesStack.Navigator>
+    <MyNotesStack.Navigator screenOptions={
+      {headerShown: false}
+    }>
       <MyNotesStack.Screen name="MyNotesScreen" component={MyNotesScreen} />
       <MyNotesStack.Screen name="Note" component={NoteScreen} />
     </MyNotesStack.Navigator>
@@ -35,7 +40,9 @@ function MyNotesStackScreen () {
 
 function FavoritesStackScreen () {
   return (
-    <FavoritesStack.Navigator>
+    <FavoritesStack.Navigator screenOptions={
+      {headerShown: false}
+    }>
       <FavoritesStack.Screen name="FavoritesScreen" component={FavoritesScreen} />
       <FavoritesStack.Screen name="Note" component={NoteScreen} />
     </FavoritesStack.Navigator>
@@ -67,9 +74,22 @@ const RootNavigator = () => {
                     },
                 })}
             >
-            <Tab.Screen name='Feed' component={FeedStackScreen} />
-            <Tab.Screen name='MyNotes' component={MyNotesStackScreen} />
-            <Tab.Screen name='Favorites' component={FavoritesStackScreen} />
+            <Tab.Screen name='Feed' component={FeedStackScreen} 
+              // options={
+              //   {headerTitle: ''}
+              // }
+
+            />
+            <Tab.Screen name='MyNotes' component={MyNotesStackScreen} 
+              // options={
+              //   {headerTitle: ''}
+              // }
+            />
+            <Tab.Screen name='Favorites' component={FavoritesStackScreen} 
+              // options={
+              //   {headerTitle: ''}
+              // }
+            />
             </Tab.Navigator>
         </NavigationContainer>
     );
