@@ -1,11 +1,22 @@
 import * as React from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
+import { format } from 'date-fns';
 
 const Note = props =>{
 
+
     return  (
         <ScrollView style={styles.noteview}>
-            <Text style={{fontSize:20}}>{props.note.content}</Text>
+            <Text style={styles.text}>
+                Note by {props.note.author.username} 
+            </Text>
+            <Text style={styles.text}>
+                Published {' '} 
+                {format(new Date(props.note.createdAt), 'MMM do yyyy')}
+            </Text>
+            <Text style={styles.text}>
+                {props.note.content}
+            </Text>
         </ScrollView>
     );
 };
@@ -13,6 +24,9 @@ const Note = props =>{
 const styles = StyleSheet.create({
     noteview:{
         padding:10,
+    },
+    text:{
+        fontSize:16,
     }
 });
 
