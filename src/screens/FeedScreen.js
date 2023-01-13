@@ -8,14 +8,7 @@ import NoteFeed from '../components/NoteFeed';
 const FeedScreen = () => {
 
     return (
-        // <View style={styles.container}>
-        //     <Text>Feed Screen</Text>
-        //     <JereButton 
-        //         onPress={() => navigation.navigate('Note')} 
-        //         title="Go to a note" 
-        //         color={"#229922"}
-        //     />
-        // </View>
+
         <NoteFeed />
     );
 };
