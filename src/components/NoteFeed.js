@@ -32,7 +32,8 @@ const NoteFeed = props => {
                         style={styles.feedview}
                         onPress={() => navigation.navigate('NoteScreen',{id: item.id})}
                     >
-                        <Note note={item} />
+                        {/* <Note note={item} /> */}
+                        <Text style={styles.text}>{item.content}</Text>
                     </Pressable>
                 )}
             />
@@ -49,14 +50,10 @@ const styles = StyleSheet.create({
         overflow:'hidden',
         borderWidth:1,
         borderColor:"#ced0ce",
-        // backgroundColor:"skyblue",
-        // alignItems:"center",
-        // justifyContent:"center",
-        // marginBottom: 10,
-        // paddingLeft:10,
+
     },
     text:{   
-        fontSize:24,   
+        fontSize:22,   
     }
 });
 

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding:10,
     },
     text:{
-        fontSize:16,
+        fontSize:18,
     }
 });
 
