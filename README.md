@@ -340,4 +340,90 @@ export default function App() {
 -------------------------------------------------------------
 it is more clear than using it in Main.js, and if you put it <RootNavigator> in Main.js, it doesn't work. I don't know why.
 
+5. Make request, get notes and note.
+In FeedScreen, useQuery
+------------------------------------------
+import { useQuery, gql } from '@apollo/client';
+
+// compose our query
+const GET_NOTES = gql`
+  query notes {
+    notes {
+      id
+      createdAt
+      content
+      favoriteCount
+      author {
+        username
+        id
+        avatar
+      }
+    }
+  }
+`;
+
+const FeedScreen = () => {
+    const { data, loading, error } = useQuery(GET_NOTES);
+    // if the data is loading, our app will display a loading indicator
+    if(loading)
+        return <Text>Loading...</Text>;
+    if(error)
+        return <Text>Error loading notes.</Text>;
+
+    // if the query is successful and there are notes, return the feed of notes
+    return (
+        <NoteFeed notes={data.notes} />
+    );
+};
+-----------------------------------------------------
+In NoteFeed, line 197, revise 
+    data={props.notes}
+Now, the data is from Server, and the Notes from server is displayed.
+How to update the note? Go to NoteScreen, it is similiar.
+-------------------------------------------------------
+const NoteScreen = ({navigation, route}) => {
+    const {id} = route.params;
+
+    const { data, loading, error } = useQuery(GET_NOTE, {variables:{id}});
+    // if the data is loading, our app will display a loading indicator
+    if(loading)
+        return <Text>Loading...</Text>;
+    if(error)
+        return <Text>Error Note not found.</Text>;
+
+    return (
+        <Note note={data.note} />
+    );
+};
+---------------------------------------------------------------
+In note, update with a better display, use date-fns, to install it
+npm install date-fns --save
+then update note..
+----------------------------------------------------------------
+const Note = props =>{
+
+
+    return  (
+        <ScrollView style={styles.noteview}>
+            <Text style={styles.text}>
+                Note by {props.note.author.username} 
+            </Text>
+            <Text style={styles.text}>
+                Published {' '} 
+                {format(new Date(props.note.createdAt), 'MMM do yyyy')}
+            </Text>
+            <Text style={styles.text}>
+                {props.note.content}
+            </Text>
+        </ScrollView>
+    );
+};
+----------------------------------------------------------
+We can also define different Styles for author name, date and content, But now, I am lasy to do it.
+Another question is In NoteFeed,                     
+<Note note={item} />
+is it a good way? It leads to FeedScreen every note in the flatlist looks lite the note in NoteScreen.
+I will revise it later.
+
+
 
