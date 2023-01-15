@@ -1,7 +1,9 @@
 import React from 'react';
 // import MainApp from './src/Main';
+import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './src/screens';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 
 // Initialize Apollo Client
 const client = new ApolloClient({
@@ -12,7 +14,9 @@ const client = new ApolloClient({
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <RootNavigator />
+      <NavigationContainer> 
+        <RootNavigator />
+      </NavigationContainer> 
     </ApolloProvider>
   );
 };

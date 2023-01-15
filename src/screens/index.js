@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import FavoritesScreen from './FavoritesScreen';
@@ -48,8 +48,8 @@ function FavoritesStackScreen () {
   );
 }
 const RootNavigator = () => {
-    return (   
-        <NavigationContainer>
+    return (  
+
             <Tab.Navigator
                 initialRouteName="Feed"
                 activeColor='#f0f'
@@ -76,8 +76,9 @@ const RootNavigator = () => {
             <Tab.Screen name='Feed' component={FeedStackScreen} />
             <Tab.Screen name='MyNotes' component={MyNotesStackScreen} />
             <Tab.Screen name='Favorites' component={FavoritesStackScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
+          </Tab.Navigator>
+
+
     );
 };
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
+// import Markdown from 'react-native-markdown-package';
 
 const Note = props =>{
-
 
     return  (
         <ScrollView style={styles.noteview}>
@@ -17,6 +17,9 @@ const Note = props =>{
             <Text style={styles.text}>
                 {props.note.content}
             </Text>
+            {/* <Markdown>
+                {props.note.content}
+            </Markdown> */}
         </ScrollView>
     );
 };
