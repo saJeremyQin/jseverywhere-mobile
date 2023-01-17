@@ -16,7 +16,8 @@ const AuthLoading = props => {
         navigation.navigate( userToken ? 'App':'Auth' );
         // navigation.navigate( userToken ? 'Auth':'App' );
     };
-
+    
+    // call checkLoginState as soon as the component mounts
     useEffect(() =>{
         checkLoginState();
     });
