@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './src/screens';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
 // Initialize Apollo Client
@@ -13,10 +14,14 @@ const client = new ApolloClient({
 
 export default function App() {
   return (
-    <ApolloProvider client={client}>
-      <NavigationContainer> 
-        <RootNavigator />
-      </NavigationContainer> 
-    </ApolloProvider>
+    <SafeAreaProvider>
+      <ApolloProvider client={client}>
+        <NavigationContainer> 
+          <SafeAreaView style={{flex: 1}}> 
+            <RootNavigator />
+          </SafeAreaView>
+        </NavigationContainer> 
+      </ApolloProvider>
+    </SafeAreaProvider>
   );
 };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FavoritesScreen from './FavoritesScreen';
 import FeedScreen from './FeedScreen';
 import MyNotesScreen from './MyNotesScreen';
@@ -13,13 +13,13 @@ import AuthLoading from './AuthLoading';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const FeedStack = createStackNavigator();
-const MyNotesStack = createStackNavigator();
-const FavoritesStack = createStackNavigator();
-const SettingsStack = createStackNavigator();
-const AuthStack = createStackNavigator();
+const FeedStack = createNativeStackNavigator();
+const MyNotesStack = createNativeStackNavigator();
+const FavoritesStack = createNativeStackNavigator();
+const SettingsStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 function FeedStackScreen () {
   return (
