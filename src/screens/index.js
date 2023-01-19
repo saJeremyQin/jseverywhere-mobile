@@ -110,7 +110,7 @@ const TabNavigator = () => {
 const AuthStackNavigator = () => {
   return (
     <AuthStack.Navigator
-      // screenOptions={{headerShown:false}}
+      screenOptions={{headerShown:false}}
     >
       <AuthStack.Screen name='signIn' component={SignIn}></AuthStack.Screen>
     </AuthStack.Navigator>
@@ -121,11 +121,48 @@ const RootNavigator = () => {
     return (  
       <Stack.Navigator 
         initialRouteName='AuthLoading'
-        screenOptions={{headerShown: false}}
+        // screenOptions={{headerShown: false}}
       >
-        <Stack.Screen name='AuthLoading' component={AuthLoading} options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='Auth' component={AuthStackNavigator}  options={{headerShown: false}}></Stack.Screen>
-        <Stack.Screen name='App' component={TabNavigator}  options={{headerShown: false}}></Stack.Screen>
+        <Stack.Screen name='AuthLoading' 
+          component={AuthLoading} 
+          // options={{headerShown: false}}
+          options={{title:'AuthLoading'}}
+        >
+        </Stack.Screen>
+        <Stack.Screen name='Auth' 
+          component={AuthStackNavigator}  
+          // options={{headerShown: false}}
+          // options={{title:'Auth'}}
+          options={{
+            title: 'Auth',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerBackVisible: false,
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+        </Stack.Screen>
+        <Stack.Screen name='App' 
+          component={TabNavigator}  
+          // options={{headerShown: false}}
+          // options={{title:'App'}}
+          options={{
+            title: 'App',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerBackVisible:false,
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >       
+        </Stack.Screen>
       </Stack.Navigator>
     );
 };
