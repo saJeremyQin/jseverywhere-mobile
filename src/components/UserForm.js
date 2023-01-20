@@ -10,8 +10,7 @@ const UserForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log('email is', email);
-        // console.log('password is', password);
+
         props.action({
             variables:{
                 email,
@@ -22,7 +21,7 @@ const UserForm = props => {
 
     return (
         <View style={styles.formview}>
-            <Text style={styles.formlabel}>Email:</Text>
+            <Text style={styles.formlabel}>Email</Text>
             <TextInput
                 style={styles.input} 
                 onChangeText={(text) => setEmail(text)}
@@ -32,7 +31,7 @@ const UserForm = props => {
                 autoFocus={true}
                 autoCapitalize='none'
             />
-            <Text>Password:</Text>
+            <Text style={styles.formlabel}>Password</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={(text) => setPassword(text)}
@@ -41,14 +40,17 @@ const UserForm = props => {
                 textContentType='password'
                 secureTextEntry={true}
             />
-            <JereButton color="green" title='Submit' onPress={handleSubmit} />
+            <JereButton color="green" title='Submit' onPress={handleSubmit} style={styles.formbutton}/>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     formview:{
+        flex:1,
         padding:10
+        // justifyContent:'center',
+        // alignItems:'center'
     },
     input:{
         // border: 1px solid gray;
@@ -56,18 +58,22 @@ const styles = StyleSheet.create({
         // padding: 8px;
         // margin-bottom: 24px;
         borderWidth:1,
+        borderColor:'gray',
         borderRadius:5,
         marginBottom:20,
         height:40,
-        width:'80%',
+        width:'100%',
         padding:8,
         // textAlign:'center'
     },
-    // formlabel:{
-    //     font-size: 18px;
-    //     font-weight: bold;
-    // }
-
+    formlabel:{
+        fontSize: 18,
+        fontWeight:'bold'
+    },
+    formbutton:{
+        width:'100%',
+        height:40
+    }
 });
 
 
