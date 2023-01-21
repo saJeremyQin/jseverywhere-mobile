@@ -32,7 +32,6 @@ const NoteFeed = props => {
                         style={styles.feedview}
                         onPress={() => navigation.navigate('NoteScreen',{id: item.id})}
                     >
-                        {/* <Note note={item} /> */}
                         <Text style={styles.text}>{item.content}</Text>
                     </Pressable>
                 )}

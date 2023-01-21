@@ -17,9 +17,6 @@ const Note = props =>{
             <Text style={styles.text}>
                 {props.note.content}
             </Text>
-            {/* <Markdown>
-                {props.note.content}   // it seems Markdown conflict with NavigationContainer
-            </Markdown> */}
         </ScrollView>
     );
 };

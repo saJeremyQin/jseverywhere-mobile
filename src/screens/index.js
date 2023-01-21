@@ -15,68 +15,69 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const FeedStack = createNativeStackNavigator();
-const MyNotesStack = createNativeStackNavigator();
-const FavoritesStack = createNativeStackNavigator();
-const SettingsStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
+const feedStack = createNativeStackNavigator();
+const myNotesStack = createNativeStackNavigator();
+const favoritesStack = createNativeStackNavigator();
+const settingsStack = createNativeStackNavigator();
 
-function FeedStackScreen () {
+
+function FeedStack () {
   return (
-    <FeedStack.Navigator
+    <feedStack.Navigator
       screenOptions={
         {headerShown:false}
       } 
     >
-      <FeedStack.Screen name="FeedScreen" component={FeedScreen} />
-      <FeedStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
-    </FeedStack.Navigator>
+      <feedStack.Screen name="FeedScreen" component={FeedScreen} />
+      <feedStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
+    </feedStack.Navigator>
   );
 }
 
-function MyNotesStackScreen () {
+function MyNotesStack () {
   return (
-    <MyNotesStack.Navigator 
-    screenOptions={
-      {headerShown:false}
-    } 
-    >
-      <MyNotesStack.Screen name="MyNotesScreen" component={MyNotesScreen} />
-      <MyNotesStack.Screen name="Note" component={NoteScreen} options={{headerShown:true}} />
-    </MyNotesStack.Navigator>
-  );
-}
-
-function FavoritesStackScreen () {
-  return (
-    <FavoritesStack.Navigator 
-    screenOptions={
-      {headerShown:false}
-    } 
-    >
-      <FavoritesStack.Screen name="FavoritesScreen" component={FavoritesScreen} />
-      <FavoritesStack.Screen name="Note" component={NoteScreen} options={{headerShown:true}}/>
-    </FavoritesStack.Navigator>
-  );
-}
-
-function SettingsStackScreen () {
-  return (
-    <SettingsStack.Navigator 
+    <myNotesStack.Navigator 
       screenOptions={
       {headerShown:false}
     } 
     >
-      <SettingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
-      {/* <SettingsStack.Screen name="Note" component={NoteScreen} /> */}
-    </SettingsStack.Navigator>
+      <myNotesStack.Screen name="MyNotesScreen" component={MyNotesScreen} />
+      <myNotesStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}} />
+    </myNotesStack.Navigator>
+  );
+}
+
+function FavoritesStack () {
+  return (
+    <favoritesStack.Navigator 
+    screenOptions={
+      {headerShown:false}
+    } 
+    >
+      <favoritesStack.Screen name="FavoritesScreen" component={FavoritesScreen} />
+      <favoritesStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
+    </favoritesStack.Navigator>
+  );
+}
+
+function SettingsStack () {
+  return (
+    <settingsStack.Navigator 
+      screenOptions={
+      {headerShown:false}
+    } 
+    >
+      <settingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
+
+    </settingsStack.Navigator>
   );
 }
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="MyNotes"
       activeColor='#f0f'
       inactiveColor='#555'
       barStyle={{
@@ -86,12 +87,14 @@ const TabNavigator = () => {
           headerShown: false,
           tabBarIcon:({focused, size, color}) => {
           let iconName;
-          if( route.name === 'Feed') {
+          if( route.name === 'FeedStack') {
               iconName = 'home';
-          } else if (route.name === 'MyNotes') { 
+          } else if (route.name === 'MyNotesStack') { 
               iconName = 'bed';
-          } else {
+          } else if (route.name === 'FavoritesStack') {
               iconName = 'star'
+          } else {
+              iconName = 'spa'
           }
           color = focused ? '#f0f' : "#555";
           size = focused ? 24 : 20;
@@ -99,15 +102,15 @@ const TabNavigator = () => {
           },
       })}
     >
-      <Tab.Screen name='Feed' component={FeedStackScreen} options={{headerShown: false}} />
-      <Tab.Screen name='MyNotes' component={MyNotesStackScreen} options={{headerShown: false}} />
-      <Tab.Screen name='Favorites' component={FavoritesStackScreen} options={{headerShown: false}}/>
-      <Tab.Screen name='Settings' component={SettingsStackScreen} options={{headerShown: false}} />
+      <Tab.Screen name='FeedStack' component={FeedStack} options={{headerShown: false}} />
+      <Tab.Screen name='MyNotesStack' component={MyNotesStack} options={{headerShown: false}} />
+      <Tab.Screen name='FavoritesStack' component={FavoritesStack} options={{headerShown: false}}/>
+      <Tab.Screen name='SettingsStack' component={SettingsStack} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 };
 
-const AuthStackNavigator = () => {
+const Auth= () => {
   return (
     <AuthStack.Navigator
       screenOptions={{headerShown:false}}
@@ -121,18 +124,14 @@ const RootNavigator = () => {
     return (  
       <Stack.Navigator 
         initialRouteName='AuthLoading'
-        // screenOptions={{headerShown: false}}
       >
         <Stack.Screen name='AuthLoading' 
           component={AuthLoading} 
-          // options={{headerShown: false}}
           options={{title:'AuthLoading'}}
         >
         </Stack.Screen>
         <Stack.Screen name='Auth' 
-          component={AuthStackNavigator}  
-          // options={{headerShown: false}}
-          // options={{title:'Auth'}}
+          component={Auth}  
           options={{
             title: 'Auth',
             headerStyle: {
@@ -148,8 +147,6 @@ const RootNavigator = () => {
         </Stack.Screen>
         <Stack.Screen name='App' 
           component={TabNavigator}  
-          // options={{headerShown: false}}
-          // options={{title:'App'}}
           options={{
             title: 'App',
             headerStyle: {
