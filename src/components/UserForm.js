@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import JereButton from './JereButton';
+import { useNavigation } from '@react-navigation/native';
 
 const UserForm = props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username,setUsername] = useState('');
+
+    const navigation = useNavigation();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -14,7 +18,8 @@ const UserForm = props => {
         props.action({
             variables:{
                 email,
-                password
+                password,
+                username
             }
         });
     };
@@ -31,6 +36,21 @@ const UserForm = props => {
                 autoFocus={true}
                 autoCapitalize='none'
             />
+            {
+                props.formType==="SignUp" && (
+                    <>
+                        <Text style={styles.formlabel}>Username</Text>
+                        <TextInput
+                            style={styles.input} 
+                            onChangeText={(text) => setUsername(text)}
+                            value={username}
+                            placeholder='Please input your Username'
+                            textContentType='username'
+                            autoCapitalize='none'
+                        />
+                    </>
+                )
+            }
             <Text style={styles.formlabel}>Password</Text>
             <TextInput
                 style={styles.input}
@@ -41,6 +61,15 @@ const UserForm = props => {
                 secureTextEntry={true}
             />
             <JereButton color="green" title='Submit' onPress={handleSubmit} style={styles.formbutton}/>
+            {
+                props.formType!=="SignUp" && (
+                    <Pressable onPress={()=> navigation.navigate('signUp')} style={styles.linkview}>
+                        <Text>Need an account? 
+                            <Text style={styles.linktext}>Sign up</Text>
+                        </Text>                        
+                    </Pressable>
+                )
+            }
         </View>
     );
 };
@@ -49,8 +78,6 @@ const styles = StyleSheet.create({
     formview:{
         flex:1,
         padding:10
-        // justifyContent:'center',
-        // alignItems:'center'
     },
     input:{
         // border: 1px solid gray;
@@ -64,7 +91,6 @@ const styles = StyleSheet.create({
         height:40,
         width:'100%',
         padding:8,
-        // textAlign:'center'
     },
     formlabel:{
         fontSize: 18,
@@ -73,6 +99,13 @@ const styles = StyleSheet.create({
     formbutton:{
         width:'100%',
         height:40
+    },
+    linkview:{
+        margin:10
+    },
+    linktext:{
+        color: "#0077cc",
+        fontWeight:'bold'
     }
 });
 

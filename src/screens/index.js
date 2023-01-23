@@ -8,6 +8,7 @@ import MyNotesScreen from './MyNotesScreen';
 import SettingsScreen from './SettingsScreen';
 import NoteScreen from './NoteScreen';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 import AuthLoading from './AuthLoading';
 
 
@@ -51,9 +52,9 @@ function MyNotesStack () {
 function FavoritesStack () {
   return (
     <favoritesStack.Navigator 
-    screenOptions={
-      {headerShown:false}
-    } 
+      screenOptions={
+        {headerShown:false}
+      } 
     >
       <favoritesStack.Screen name="FavoritesScreen" component={FavoritesScreen} />
       <favoritesStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
@@ -69,7 +70,6 @@ function SettingsStack () {
     } 
     >
       <settingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
-
     </settingsStack.Navigator>
   );
 }
@@ -77,7 +77,7 @@ function SettingsStack () {
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="MyNotes"
+      initialRouteName="Feed"
       activeColor='#f0f'
       inactiveColor='#555'
       barStyle={{
@@ -87,11 +87,11 @@ const TabNavigator = () => {
           headerShown: false,
           tabBarIcon:({focused, size, color}) => {
           let iconName;
-          if( route.name === 'FeedStack') {
+          if( route.name === 'Feed') {
               iconName = 'home';
-          } else if (route.name === 'MyNotesStack') { 
+          } else if (route.name === 'MyNotes') { 
               iconName = 'bed';
-          } else if (route.name === 'FavoritesStack') {
+          } else if (route.name === 'Favorites') {
               iconName = 'star'
           } else {
               iconName = 'spa'
@@ -102,10 +102,10 @@ const TabNavigator = () => {
           },
       })}
     >
-      <Tab.Screen name='FeedStack' component={FeedStack} options={{headerShown: false}} />
-      <Tab.Screen name='MyNotesStack' component={MyNotesStack} options={{headerShown: false}} />
-      <Tab.Screen name='FavoritesStack' component={FavoritesStack} options={{headerShown: false}}/>
-      <Tab.Screen name='SettingsStack' component={SettingsStack} options={{headerShown: false}} />
+      <Tab.Screen name='Feed' component={FeedStack} options={{headerShown: false}} />
+      <Tab.Screen name='MyNotes' component={MyNotesStack} options={{headerShown: false}} />
+      <Tab.Screen name='Favorites' component={FavoritesStack} options={{headerShown: false}}/>
+      <Tab.Screen name='Settings' component={SettingsStack} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 };
@@ -116,6 +116,7 @@ const Auth= () => {
       screenOptions={{headerShown:false}}
     >
       <AuthStack.Screen name='signIn' component={SignIn}></AuthStack.Screen>
+      <AuthStack.Screen name='signUp' component={SignUp}></AuthStack.Screen>
     </AuthStack.Navigator>
   );
 };

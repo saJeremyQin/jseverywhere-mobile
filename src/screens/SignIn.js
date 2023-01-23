@@ -18,8 +18,7 @@ const SignIn = props => {
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's main screen
     const storeToken = token => {
-        console.log('I am here in storeToken');
-        console.log(props);
+
         SecureStore.setItemAsync('token', token).then(
             navigation.navigate('App')
         );
@@ -31,7 +30,6 @@ const SignIn = props => {
         onCompleted: data => {
             console.log(data);
             storeToken(data.signIn);
-            navigation.navigate('App');
         }
     })
 
