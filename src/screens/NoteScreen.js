@@ -42,9 +42,9 @@ const NoteScreen = ({navigation, route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:"center",
+        justifyContent:'center',
         alignItems:'center',
-        backgroundColor:"gray"
+        backgroundColor:'gray'
     }
 });
 export default NoteScreen;

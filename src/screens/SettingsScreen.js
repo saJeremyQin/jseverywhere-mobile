@@ -15,7 +15,7 @@ const SettingsScreen = props => {
 
     return (
         <View style={styles.container}>
-            <JereButton title='SignOut' color="pink" onPress={signOut}/>
+            <JereButton title='SignOut' color='pink' onPress={signOut}/>
          </View>
     );
 };

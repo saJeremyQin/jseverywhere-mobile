@@ -60,7 +60,7 @@ const UserForm = props => {
                 textContentType='password'
                 secureTextEntry={true}
             />
-            <JereButton color="green" title='Submit' onPress={handleSubmit} style={styles.formbutton}/>
+            <JereButton color='green' title='Submit' onPress={handleSubmit} style={styles.formbutton}/>
             {
                 props.formType!=="SignUp" && (
                     <Pressable onPress={()=> navigation.navigate('signUp')} style={styles.linkview}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         margin:10
     },
     linktext:{
-        color: "#0077cc",
+        color: '#0077cc',
         fontWeight:'bold'
     }
 });

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         height:100,
         overflow:'hidden',
         borderWidth:1,
-        borderColor:"#ced0ce",
+        borderColor:'#ced0ce',
 
     },
     text:{   

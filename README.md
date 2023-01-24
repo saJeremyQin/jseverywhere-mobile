@@ -84,7 +84,7 @@ const Main = () => {
                     } else {
                         iconName = 'star'
                     }
-                    color = focused ? '#f0f' : "#555";
+                    color = focused ? '#f0f' : '#555';
                     size = focused ? 24 : 20;
                     return <FontAwesome5 name={iconName} size={size} color={color}/>;
                     },
@@ -115,7 +115,7 @@ const FavoritesScreen = ({navigation}) => {
             <JereButton                                               // the button I encapsulated, You can replace with Button
                 onPress={() => navigation.navigate('NoteScreen')} 
                 title="Go to a note" 
-                color={"#221188"}
+                color={'#221188'}
             />
         </View>
     );
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent:"center",
         alignItems:'center',
-        backgroundColor:"gray"
+        backgroundColor:'gray'
     }
 });
 export default NoteScreen;
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
         height:100,
         overflow:'hidden',
         borderWidth:1,
-        borderColor:"#ced0ce",
+        borderColor:'#ced0ce',
     },
     text:{   
         fontSize:24,   
@@ -302,7 +302,7 @@ const RootNavigator = () => {
                     } else {
                         iconName = 'star'
                     }
-                    color = focused ? '#f0f' : "#555";
+                    color = focused ? '#f0f' : '#555';
                     size = focused ? 24 : 20;
                     return <FontAwesome5 name={iconName} size={size} color={color}/>;
                     },

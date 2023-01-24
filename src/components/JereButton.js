@@ -8,7 +8,7 @@ const JereButton = (props) => {
         <Pressable 
             onPress={props.onPress}
             hitSlop = {{left:20,right:20}}
-            android_ripple = {{color:"#00f"}}
+            android_ripple = {{color:'#00f'}}
             style = { 
             ({ pressed }) => [
                 { backgroundColor: pressed ? '#ddd' : props.color},
@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
     },
     text:{   
         fontSize:20,
-        color:"black",
+        color:'black',
         margin:5,
-        textAlign:"center"
+        textAlign:'center'
     }
 })
 
