@@ -43,14 +43,14 @@ const client = new ApolloClient({
 
 export default function App() {
   return (
-    <SafeAreaProvider>
+    // <SafeAreaProvider>
       <ApolloProvider client={client}>
         <NavigationContainer> 
-          <SafeAreaView style={{flex: 1}}> 
+          {/* <SafeAreaView style={{flex: 1}}>  */}
             <RootNavigator />
-          </SafeAreaView>
+          {/* </SafeAreaView> */}
         </NavigationContainer> 
       </ApolloProvider>
-    </SafeAreaProvider>
+    // </SafeAreaProvider>
   );
 };
