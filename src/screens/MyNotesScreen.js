@@ -42,7 +42,7 @@ const MyNotesScreen = () => {
     if(data.me.notes.length !== 0)  {
         return <NoteFeed notes={data.me.notes} />;
     } else {
-        return <Text style={styles.text}>No notes yet</Text>;
+        return <Text style={styles.text}>{data.me.username}, You have no notes yet</Text>;
     }
     // const navigation = useNavigation();
     // // console.log(navigation);

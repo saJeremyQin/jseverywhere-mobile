@@ -41,7 +41,7 @@ const FavoritesScreen = ({navigation}) => {
   if(data.me.favorites.length !== 0)
       return <NoteFeed notes={data.me.favorites}/>;
   else
-      return <Text style={styles.text}>No favorites yet</Text>;
+      return <Text style={styles.text}>{data.me.username}, You have no favorites yet</Text>;
 
 };
 
