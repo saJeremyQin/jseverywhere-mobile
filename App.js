@@ -1,3 +1,4 @@
+import 'expo-dev-client';
 import React from 'react';
 // import MainApp from './src/Main';
 import { NavigationContainer } from '@react-navigation/native';
