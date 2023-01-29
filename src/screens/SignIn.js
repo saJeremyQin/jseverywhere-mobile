@@ -17,11 +17,15 @@ const SignIn = props => {
     const navigation = useNavigation();
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's main screen
-    const storeToken = token => {
-
-        SecureStore.setItemAsync('token', token).then(
-            navigation.navigate('App')
-        );
+    const storeToken = async (token) => {
+        try {
+            await SecureStore.setItemAsync('token', token).then(
+                navigation.navigate('App')
+            );         
+        } catch (error) {
+            console.log('SignIn save token failure.');         
+        }
+    
     };
     
     // const client = useApolloClient();

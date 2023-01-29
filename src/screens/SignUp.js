@@ -19,11 +19,16 @@ const SignUp = () => {
     const navigation = useNavigation();
 
     // here only arrow function can be used?
-    const storeToken = (tokenStr) => {
-        SecureStore.setItemAsync('token', tokenStr).then(
-            navigation.navigate('App')
-        );
-    }
+    const storeToken = async (token) => {
+        try {
+            await SecureStore.setItemAsync('token', token).then(
+                navigation.navigate('App')
+            );         
+        } catch (error) {
+            console.log('SignUp--save token failure.');         
+        }
+    
+    };
 
     const [signUp, {data, loading, error}] = useMutation(SIGNUP_USER,{
         onCompleted: data => {
