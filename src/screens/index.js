@@ -9,10 +9,13 @@ import SettingsScreen from './SettingsScreen';
 import NoteScreen from './NoteScreen';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import AuthLoading from './AuthLoading';
+import Loading from '../components/Loading';
+// import { AuthContext } from '../AuthContext';
+// import AuthLoading from './AuthLoading';
 
 
 import { FontAwesome5 } from '@expo/vector-icons';
+import { AuthContext } from '../AuthContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,6 +113,9 @@ const TabNavigator = () => {
   );
 };
 
+export default TabNavigator;
+
+
 const Auth= () => {
   return (
     <AuthStack.Navigator
@@ -121,49 +127,9 @@ const Auth= () => {
   );
 };
 
-const RootNavigator = () => {
-    return (  
-      <Stack.Navigator 
-        initialRouteName='AuthLoading'
-      >
-        <Stack.Screen name='AuthLoading' 
-          component={AuthLoading} 
-          options={{title:'AuthLoading'}}
-        >
-        </Stack.Screen>
-        <Stack.Screen name='Auth' 
-          component={Auth}  
-          options={{
-            title: 'Auth',
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerBackVisible: false,
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        >
-        </Stack.Screen>
-        <Stack.Screen name='App' 
-          component={TabNavigator}  
-          options={{
-            title: 'App',
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerBackVisible:false,
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        >       
-        </Stack.Screen>
-      </Stack.Navigator>
-    );
-};
+// const RootNavigator = () => {
+
+// };
 
 
-export default RootNavigator;
+// export default RootNavigator;

@@ -6,6 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import UserForm from "../components/UserForm";
 import { useMutation, gql, useApolloClient } from "@apollo/client";
 import Loading from "../components/Loading";
+import { AuthContext } from "../AuthContext";
+import { useContext } from "react";
+
 // define a mutation
 const SIGNIN_USER = gql`
     mutation signIn($email: String!, $password: String!) {
@@ -15,25 +18,27 @@ const SIGNIN_USER = gql`
 
 const SignIn = props => {
     const navigation = useNavigation();
+    const {logIn} = useContext(AuthContext);
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's main screen
     const storeToken = async (token) => {
         try {
-            await SecureStore.setItemAsync('token', token).then(
-                navigation.navigate('App')
-            );         
+            await SecureStore.setItemAsync('userToken', token);
+            // then(
+            //     navigation.navigate('App')
+            // );         
         } catch (error) {
             console.log('SignIn save token failure.');         
         }
     
     };
     
-    // const client = useApolloClient();
 
     const [signIn, {loading, error}] = useMutation(SIGNIN_USER, {
         onCompleted: data => {
             console.log(data);
             storeToken(data.signIn);
+            logIn(data);
         }
     })
 

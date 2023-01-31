@@ -34,7 +34,7 @@ const FavoritesScreen = ({navigation}) => {
   if(loading)
       return <Loading />;
   if(error)
-      return <Text>Error loading Favorites.</Text>;
+      return <Text>Error loading Favorites--{error.message}</Text>;
       
   // if the query is successful and there are notes, return the feed of notes
   // else if the query is successful and there aren't notes, display a message

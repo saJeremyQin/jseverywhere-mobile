@@ -1,10 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { useMutation, gql } from "@apollo/client";
 import * as SecureStore from 'expo-secure-store';
 import {View, Text} from 'react-native';
 import UserForm from "../components/UserForm";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../components/Loading";
+import { AuthContext } from "../AuthContext";
 
 // define a mutation
 const SIGNUP_USER = gql`
@@ -16,14 +18,16 @@ const SIGNUP_USER = gql`
 
 
 const SignUp = () => {
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
+    const {register} = useContext(AuthContext);
 
     // here only arrow function can be used?
     const storeToken = async (token) => {
         try {
-            await SecureStore.setItemAsync('token', token).then(
-                navigation.navigate('App')
-            );         
+            await SecureStore.setItemAsync('userToken', token);
+            // then(
+            //     navigation.navigate('App')
+            // );         
         } catch (error) {
             console.log('SignUp--save token failure.');         
         }
@@ -34,6 +38,7 @@ const SignUp = () => {
         onCompleted: data => {
             console.log(data);
             storeToken(data.signUp);
+            register(data);
         }    
     });
 
