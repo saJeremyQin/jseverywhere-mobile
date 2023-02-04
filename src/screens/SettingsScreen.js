@@ -4,7 +4,8 @@ import { View,StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import JereButton from "../components/JereButton";
 import * as SecureStore from 'expo-secure-store' ;
-import { AuthContext } from "../AuthContext";
+// import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../Globals/AuthContext";
 
 const SettingsScreen = props => {
     const {logOut} = useContext(AuthContext);

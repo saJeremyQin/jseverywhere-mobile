@@ -6,8 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import UserForm from "../components/UserForm";
 import { useMutation, gql, useApolloClient } from "@apollo/client";
 import Loading from "../components/Loading";
-import { AuthContext } from "../AuthContext";
+// import { AuthContext } from "../AuthContext";
 import { useContext } from "react";
+import { AuthContext } from "../Globals/AuthContext";
 
 // define a mutation
 const SIGNIN_USER = gql`

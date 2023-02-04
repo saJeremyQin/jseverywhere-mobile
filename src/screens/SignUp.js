@@ -6,7 +6,8 @@ import {View, Text} from 'react-native';
 import UserForm from "../components/UserForm";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../components/Loading";
-import { AuthContext } from "../AuthContext";
+// import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../Globals/AuthContext";
 
 // define a mutation
 const SIGNUP_USER = gql`

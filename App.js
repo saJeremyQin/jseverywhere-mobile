@@ -3,7 +3,8 @@ import * as React from 'react';
 import { createContext, useMemo, useReducer } from 'react';
 import { iew, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthContext } from './src/AuthContext';
+
+import { AuthContext } from './src/Globals/AuthContext';
 
 import { NavigationContainer } from '@react-navigation/native';
 import Loading from './src/components/Loading';
