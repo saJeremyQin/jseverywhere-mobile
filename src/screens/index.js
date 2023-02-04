@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FavoritesScreen from './FavoritesScreen';
@@ -7,19 +6,11 @@ import FeedScreen from './FeedScreen';
 import MyNotesScreen from './MyNotesScreen';
 import SettingsScreen from './SettingsScreen';
 import NoteScreen from './NoteScreen';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Loading from '../components/Loading';
-// import { AuthContext } from '../AuthContext';
-// import AuthLoading from './AuthLoading';
-
-
 import { FontAwesome5 } from '@expo/vector-icons';
-import { AuthContext } from '../AuthContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const AuthStack = createNativeStackNavigator();
+
 const feedStack = createNativeStackNavigator();
 const myNotesStack = createNativeStackNavigator();
 const favoritesStack = createNativeStackNavigator();
@@ -116,20 +107,3 @@ const TabNavigator = () => {
 export default TabNavigator;
 
 
-const Auth= () => {
-  return (
-    <AuthStack.Navigator
-      screenOptions={{headerShown:false}}
-    >
-      <AuthStack.Screen name='signIn' component={SignIn}></AuthStack.Screen>
-      <AuthStack.Screen name='signUp' component={SignUp}></AuthStack.Screen>
-    </AuthStack.Navigator>
-  );
-};
-
-// const RootNavigator = () => {
-
-// };
-
-
-// export default RootNavigator;

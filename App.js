@@ -1,7 +1,7 @@
 import 'expo-dev-client';
 import * as React from 'react';
 import { createContext, useMemo, useReducer } from 'react';
-import {View, Text} from 'react-native';
+import { iew, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthContext } from './src/AuthContext';
 
@@ -10,10 +10,6 @@ import Loading from './src/components/Loading';
 import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import TabNavigator from './src/screens/index';
-
-const Stack = createNativeStackNavigator();
-
-
 
 import { 
   ApolloClient, 
@@ -25,7 +21,7 @@ import { setContext } from 'apollo-link-context';
 import * as SecureStore from 'expo-secure-store';
 
 
-
+const Stack = createNativeStackNavigator();
 const API_URI='https://jseverywhere.herokuapp.com/api';
 
 // Initialize Apollo Client
@@ -39,7 +35,6 @@ const authLink = setContext(async (_, {headers}) => {
     headers:{
       ...headers,
       authorization: (await SecureStore.getItemAsync('userToken')) || ''
-      // authorization: (state.userToken) || ''
     }
   };
 });
@@ -50,10 +45,10 @@ const client = new ApolloClient({
   cache
 });
 
-
-
 export default function App() {
 
+  // The useReducer Hook accepts two arguments. 
+  // useReducer(<reducer>, <initialState>)
   const [state, dispatch] = useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -89,7 +84,6 @@ export default function App() {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
-      // console.log(userToken);
 
       try {
         // Restore token stored in `SecureStore` or any other encrypted storage
@@ -99,7 +93,6 @@ export default function App() {
       }
 
       // After restoring token, we may need to validate it in production apps
-
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       dispatch({ type: 'RESTORE_TOKEN', token: userToken });
@@ -108,6 +101,8 @@ export default function App() {
     bootstrapAsync();
   }, []);
 
+
+  //The useMemo Hook only runs when one of its dependencies update.This can improve performance.
   const authContext = useMemo(
     ()=> ({
       logIn: async (data) => {
@@ -127,7 +122,7 @@ export default function App() {
         });
       }
     }),
-    []
+    []              // [],only runs once, on mount
   );
 
   return (

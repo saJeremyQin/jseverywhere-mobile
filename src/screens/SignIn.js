@@ -44,9 +44,6 @@ const SignIn = props => {
 
     if(loading) return <Loading />;
     return (
-        // <View style={styles.container}>
-        //     <JereButton title='Sign In' onPress={storeToken} color='skyblue' />
-        // </View>
         <React.Fragment>          
             {error && <Text>Error signing in!--{error.message}</Text>}
             <UserForm action={signIn} formType="SignIn" />

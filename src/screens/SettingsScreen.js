@@ -7,15 +7,10 @@ import * as SecureStore from 'expo-secure-store' ;
 import { AuthContext } from "../AuthContext";
 
 const SettingsScreen = props => {
-    // const navigation = useNavigation();
-    // delete the token then navigate to the auth screen
     const {logOut} = useContext(AuthContext);
     const signOut = async () => {
         try {
             await SecureStore.deleteItemAsync('userToken');
-            // then(
-            //     navigation.navigate('Auth')
-            // );
             logOut();
         } catch(error) {
             console.log('Unable delete token from SecureStore.');
