@@ -2,11 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { useMutation, gql } from "@apollo/client";
 import * as SecureStore from 'expo-secure-store';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import UserForm from "../components/UserForm";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../components/Loading";
-// import { AuthContext } from "../AuthContext";
 import { AuthContext } from "../Globals/AuthContext";
 
 // define a mutation
@@ -16,7 +15,7 @@ const SIGNUP_USER = gql`
     }
 `;
 
-const SignUp = () => {
+const SignUpScreen = () => {
     const {register} = useContext(AuthContext);
 
     // here only arrow function can be used?
@@ -47,4 +46,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default SignUpScreen;

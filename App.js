@@ -5,19 +5,13 @@ import { iew, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AuthContext } from './src/Globals/AuthContext';
-
 import { NavigationContainer } from '@react-navigation/native';
 import Loading from './src/components/Loading';
-import SignIn from './src/screens/SignIn';
-import SignUp from './src/screens/SignUp';
+import SignInScreen from './src/screens/SignInScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 import TabNavigator from './src/screens/index';
 
-import { 
-  ApolloClient, 
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache 
-} from '@apollo/client';
+import { ApolloClient, ApolloProvider,createHttpLink,InMemoryCache } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 import * as SecureStore from 'expo-secure-store';
 
@@ -138,7 +132,7 @@ export default function App() {
               <Stack.Group>
                 <Stack.Screen
                   name="signIn"
-                  component={SignIn}
+                  component={SignInScreen}
                   options={{
                     title: 'Sign In',
                     // When logging out, a pop animation feels intuitive
@@ -147,7 +141,7 @@ export default function App() {
                 />
                 <Stack.Screen
                   name="signUp"
-                  component={SignUp}
+                  component={SignUpScreen}
                   options={{
                     title: 'Sign Up',
                     // When logging out, a pop animation feels intuitive
