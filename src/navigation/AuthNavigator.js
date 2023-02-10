@@ -15,15 +15,26 @@ const AuthNavigator = () => {
                 name="signIn"
                 component={SignInScreen}
                 options={{
-                title: 'Sign In',
+                    title: 'Sign In',
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTitleStyle:{
+                        fontWeight: 'bold'
+                    }
                 }}
             />
             <Stack.Screen
                 name="signUp"
                 component={SignUpScreen}
                 options={{
-                title: 'Sign Up',
-                // When logging out, a pop animation feels intuitive
+                    title: 'Sign Up',
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTitleStyle:{
+                        fontWeight: 'bold'
+                    }                 
                 }}
             />
         </Stack.Navigator>

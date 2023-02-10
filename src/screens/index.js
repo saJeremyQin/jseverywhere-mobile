@@ -20,11 +20,26 @@ const settingsStack = createNativeStackNavigator();
 function FeedStack () {
   return (
     <feedStack.Navigator
-      screenOptions={
-        {headerShown:false}
-      } 
+      // screenOptions={
+      //   {
+      //     title:'Feed',
+      //     backgroundColor:'#335511'
+      //   }
+      // } 
     >
-      <feedStack.Screen name="FeedScreen" component={FeedScreen} />
+      <feedStack.Screen name="FeedScreen" 
+        component={FeedScreen} 
+        options={
+          {
+            title:'Feed',
+            headerStyle: {
+                backgroundColor: '#334455',
+            },
+            headerTitleStyle:{
+                fontWeight: 'bold'
+            }
+          }
+        }/>
       <feedStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
     </feedStack.Navigator>
   );
@@ -33,11 +48,25 @@ function FeedStack () {
 function MyNotesStack () {
   return (
     <myNotesStack.Navigator 
-      screenOptions={
-      {headerShown:false}
-    } 
+      // screenOptions={
+      //   {headerShown:false}
+      // } 
     >
-      <myNotesStack.Screen name="MyNotesScreen" component={MyNotesScreen} />
+      <myNotesStack.Screen 
+        name="MyNotesScreen" 
+        component={MyNotesScreen} 
+        options={
+          {
+            title:'myNote',
+            headerStyle: {
+                backgroundColor: '#334455',
+            },
+            headerTitleStyle:{
+                fontWeight: 'bold'
+            }
+          }
+        }
+        />
       <myNotesStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}} />
     </myNotesStack.Navigator>
   );
@@ -46,11 +75,25 @@ function MyNotesStack () {
 function FavoritesStack () {
   return (
     <favoritesStack.Navigator 
-      screenOptions={
-        {headerShown:false}
-      } 
+      // screenOptions={
+      //   {headerShown:false}
+      // } 
     >
-      <favoritesStack.Screen name="FavoritesScreen" component={FavoritesScreen} />
+      <favoritesStack.Screen 
+        name="FavoritesScreen" 
+        component={FavoritesScreen} 
+        options={
+          {
+            title:'Favorite',
+            headerStyle: {
+                backgroundColor: '#334455',
+            },
+            headerTitleStyle:{
+                fontWeight: 'bold'
+            }
+          }
+        }
+        />
       <favoritesStack.Screen name="NoteScreen" component={NoteScreen} options={{headerShown:true}}/>
     </favoritesStack.Navigator>
   );
@@ -59,11 +102,25 @@ function FavoritesStack () {
 function SettingsStack () {
   return (
     <settingsStack.Navigator 
-      screenOptions={
-      {headerShown:false}
-    } 
+      // screenOptions={
+      //   {headerShown:false}
+      // } 
     >
-      <settingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <settingsStack.Screen
+        name="SettingsScreen" 
+        component={SettingsScreen} 
+        options={
+          {
+            title:'Setting',
+            headerStyle: {
+                backgroundColor: '#334455',
+            },
+            headerTitleStyle:{
+                fontWeight: 'bold'
+            }
+          }
+        }
+        />
     </settingsStack.Navigator>
   );
 }
@@ -96,7 +153,19 @@ const TabNavigator = () => {
           },
       })}
     >
-      <Tab.Screen name='Feed' component={FeedStack} options={{headerShown: false}} />
+      <Tab.Screen 
+        name='Feed' 
+        component={FeedStack} 
+        options={{
+          // headerShown: false, 
+          title:'Feed',
+          headerStyle: {
+            backgroundColor: '#28411e',
+          },
+          headerTitleStyle:{
+              fontWeight: 'bold'
+          }
+        }} />
       <Tab.Screen name='MyNotes' component={MyNotesStack} options={{headerShown: false}} />
       <Tab.Screen name='Favorites' component={FavoritesStack} options={{headerShown: false}}/>
       <Tab.Screen name='Settings' component={SettingsStack} options={{headerShown: false}} />
