@@ -4,15 +4,13 @@ import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import JereButton from "../components/JereButton";
 import * as SecureStore from 'expo-secure-store' ;
-import { useDispatch } from "react-redux";
-import { setSignOut } from "../redux/slices";
-import { useSelector } from "react-redux";
-import { selectUserName } from "../redux/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { setSignOut, selectUserName } from "../redux/slices";
 import { client } from '../Globals/netRequest';
 
 const SettingsScreen = props => {
     const dispatch = useDispatch();
-    // const {logOut} = useContext(AuthContext);
+
     const signOut = async () => {
         try {
             await SecureStore.deleteItemAsync('userToken').then( 
@@ -20,7 +18,6 @@ const SettingsScreen = props => {
             ).then(
                 dispatch(setSignOut())
             )         
-
         } catch(error) {
             console.log('Unable delete token from SecureStore.');
         }

@@ -1,18 +1,11 @@
 import 'expo-dev-client';
 import * as React from 'react';
-import { createContext, useMemo, useReducer } from 'react';
-import { View, Text } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import { AuthContext } from './src/Globals/AuthContext';
 import { Provider } from 'react-redux';
 import AppRoute from './src/navigation/AppRoute';
 import { store } from './src/redux/store';
 
 import { ApolloProvider } from '@apollo/client';
-
-// import * as SecureStore from 'expo-secure-store';
-
 import { client } from './src/Globals/netRequest';
 
 
@@ -128,5 +121,4 @@ export default function App() {
       </ApolloProvider>
     </Provider>
   );
-
 };

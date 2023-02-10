@@ -23,7 +23,10 @@ const authSlice = createSlice({
         },
         setSignOut: (state, action) => {
             state.isLoggedIn = false;
-            // client.resetStore();
+            state.email = null;
+            state.userName = null;
+            state.userToken = null;
+    
         },
         setUserInfo: (state, action) => {
             state.userName = action.payload.userName;           

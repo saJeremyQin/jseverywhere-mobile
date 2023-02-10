@@ -19,7 +19,7 @@ const authLink = setContext(async (_, {headers}) => {
     return {
       headers:{
         ...headers,
-        authorization: (await SecureStore.getItemAsync('userToken')) || ''   //may be can useSelector
+        authorization: (await SecureStore.getItemAsync('userToken')) || ''   //can't use selector, because the limit of hooks
         // authorization: token
       }
     };
