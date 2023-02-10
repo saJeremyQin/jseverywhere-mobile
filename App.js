@@ -73,26 +73,27 @@ export default function App() {
   );
 
 
-  React.useEffect(() => {
-    // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
-      let userToken;
+  // React.useEffect(() => {
+  //   // Fetch the token from storage then navigate to our appropriate place
+  //   const bootstrapAsync = async () => {
+  //     let userToken;
 
-      try {
-        // Restore token stored in `SecureStore` or any other encrypted storage
-        userToken = await SecureStore.getItemAsync('userToken');
-      } catch (e) {
-        // Restoring token failed
-      }
+  //     try {
+  //       // Restore token stored in `SecureStore` or any other encrypted storage
+  //       userToken = await SecureStore.getItemAsync('userToken');
+  //     } catch (e) {
+  //       // Restoring token failed
+  //     }
+  //     console.log(userToken);
 
-      // After restoring token, we may need to validate it in production apps
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
-    };
+  //     // After restoring token, we may need to validate it in production apps
+  //     // This will switch to the App screen or Auth screen and this loading
+  //     // screen will be unmounted and thrown away.
+  //     dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+  //   };
 
-    bootstrapAsync();
-  }, []);
+  //   bootstrapAsync();
+  // }, []);
 
 
   //The useMemo Hook only runs when one of its dependencies update.This can improve performance.
@@ -125,41 +126,5 @@ export default function App() {
       </ApolloProvider>
     </Provider>
   );
-  //   <AuthContext.Provider value={authContext} >
-  //     <ApolloProvider client={client}>
-  //       <NavigationContainer>
-  //         <Stack.Navigator>
-  //           {state.isLoading ? (
-  //             // We haven't finished checking for the token yet
-  //             <Stack.Screen name="loading" component={Loading} />
-  //           ) : state.userToken == null ? (
-  //             <Stack.Group>
-  //               <Stack.Screen
-  //                 name="signIn"
-  //                 component={SignInScreen}
-  //                 options={{
-  //                   title: 'Sign In',
-  //                   // When logging out, a pop animation feels intuitive
-  //                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-  //                 }}
-  //               />
-  //               <Stack.Screen
-  //                 name="signUp"
-  //                 component={SignUpScreen}
-  //                 options={{
-  //                   title: 'Sign Up',
-  //                   // When logging out, a pop animation feels intuitive
-  //                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-  //                 }}
-  //               />
-  //             </Stack.Group>
-  //           ) : (
-  //             // User is signed in
-  //             <Stack.Screen name="App" component={TabNavigator} />
-  //           )}
-  //         </Stack.Navigator>
-  //       </NavigationContainer>
-  //      </ApolloProvider>
-  //   </AuthContext.Provider>
-  // );
+
 };
