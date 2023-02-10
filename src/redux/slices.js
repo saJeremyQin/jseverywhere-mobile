@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { client } from "../Globals/netRequest";
+// import { client } from "../Globals/netRequest";
 
 const initialState = {
     isLoggedIn: false,
@@ -23,7 +23,7 @@ const authSlice = createSlice({
         },
         setSignOut: (state, action) => {
             state.isLoggedIn = false;
-            client.resetStore();
+            // client.resetStore();
         },
         setUserInfo: (state, action) => {
             state.userName = action.payload.userName;           

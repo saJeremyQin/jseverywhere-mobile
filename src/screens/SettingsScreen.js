@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setSignOut } from "../redux/slices";
 import { useSelector } from "react-redux";
 import { selectUserName } from "../redux/slices";
+import { client } from '../Globals/netRequest';
 
 const SettingsScreen = props => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const SettingsScreen = props => {
     const signOut = async () => {
         try {
             await SecureStore.deleteItemAsync('userToken');
+            client.resetStore();
             dispatch(setSignOut());
         } catch(error) {
             console.log('Unable delete token from SecureStore.');
