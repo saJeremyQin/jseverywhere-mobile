@@ -9,68 +9,70 @@ import { Provider } from 'react-redux';
 import AppRoute from './src/navigation/AppRoute';
 import { store } from './src/redux/store';
 
-import { ApolloClient, ApolloProvider,createHttpLink,InMemoryCache } from '@apollo/client';
-import { setContext } from 'apollo-link-context';
-import * as SecureStore from 'expo-secure-store';
+import { ApolloProvider } from '@apollo/client';
+
+// import * as SecureStore from 'expo-secure-store';
+
+import { client } from './src/Globals/netRequest';
 
 
-const Stack = createNativeStackNavigator();
-const API_URI='https://jseverywhere.herokuapp.com/api';
+// const Stack = createNativeStackNavigator();
+// const API_URI='https://jseverywhere.herokuapp.com/api';
 
-// Initialize Apollo Client
-const uri = API_URI;
-const cache = new InMemoryCache();
-const httplink = createHttpLink({uri});
+// // Initialize Apollo Client
+// const uri = API_URI;
+// const cache = new InMemoryCache();
+// const httplink = createHttpLink({uri});
 
-// return the headers to the context
-const authLink = setContext(async (_, {headers}) => {
-  return {
-    headers:{
-      ...headers,
-      authorization: (await SecureStore.getItemAsync('userToken')) || ''
-    }
-  };
-});
+// // return the headers to the context
+// const authLink = setContext(async (_, {headers}) => {
+//   return {
+//     headers:{
+//       ...headers,
+//       authorization: (await SecureStore.getItemAsync('userToken')) || ''
+//     }
+//   };
+// });
 
-// configure Apollo Client
-const client = new ApolloClient({
-  link: authLink.concat(httplink),
-  cache
-});
+// // configure Apollo Client
+// const client = new ApolloClient({
+//   link: authLink.concat(httplink),
+//   cache
+// });
 
 export default function App() {
 
   // The useReducer Hook accepts two arguments. 
   // useReducer(<reducer>, <initialState>)
-  const [state, dispatch] = useReducer(
-    (prevState, action) => {
-      switch (action.type) {
-        case 'RESTORE_TOKEN':
-          return {
-            ...prevState,
-            userToken: action.token,
-            isLoading: false,
-          };
-        case 'LOG_IN':
-          return {
-            ...prevState,
-            isSignout: false,
-            userToken: action.token,
-          };
-        case 'LOG_OUT':
-          return {
-            ...prevState,
-            isSignout: true,
-            userToken: null,
-          };
-      }
-    },
-    {
-      isLoading: true,
-      isSignout: false,
-      userToken: null,
-    }
-  );
+  // const [state, dispatch] = useReducer(
+  //   (prevState, action) => {
+  //     switch (action.type) {
+  //       case 'RESTORE_TOKEN':
+  //         return {
+  //           ...prevState,
+  //           userToken: action.token,
+  //           isLoading: false,
+  //         };
+  //       case 'LOG_IN':
+  //         return {
+  //           ...prevState,
+  //           isSignout: false,
+  //           userToken: action.token,
+  //         };
+  //       case 'LOG_OUT':
+  //         return {
+  //           ...prevState,
+  //           isSignout: true,
+  //           userToken: null,
+  //         };
+  //     }
+  //   },
+  //   {
+  //     isLoading: true,
+  //     isSignout: false,
+  //     userToken: null,
+  //   }
+  // );
 
 
   // React.useEffect(() => {

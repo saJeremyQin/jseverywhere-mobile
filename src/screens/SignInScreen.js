@@ -36,11 +36,6 @@ const SignInScreen = props => {
     
     const [signIn, {loading, error}] = useMutation(SIGNIN_USER, {
         onCompleted: data => {
-            // console.log(data);
-            // const userStatus = {
-            //     isLoggedIn: true,
-            //     userToken: data.signIn
-            // }
 
             storeToken(data.signIn);
             dispatch(setSignIn({
