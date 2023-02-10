@@ -5,6 +5,8 @@ import { useQuery,gql } from '@apollo/client';
 import JereButton from '../components/JereButton';
 import Loading from '../components/Loading';
 import NoteFeed from '../components/NoteFeed';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../redux/slices';
 
 
 const GET_MY_FAVORITES = gql`
@@ -28,6 +30,7 @@ const GET_MY_FAVORITES = gql`
 `;
 
 const FavoritesScreen = ({navigation}) => {
+  const dispatch = useDispatch();
 
   const { data, loading, error } = useQuery(GET_MY_FAVORITES);
   // if the data is loading, our app will display a loading indicator
@@ -35,7 +38,9 @@ const FavoritesScreen = ({navigation}) => {
       return <Loading />;
   if(error)
       return <Text>Error loading Favorites--{error.message}</Text>;
+  
       
+  dispatch(setUserInfo({userName: data.me.username}));
   // if the query is successful and there are notes, return the feed of notes
   // else if the query is successful and there aren't notes, display a message
   if(data.me.favorites.length !== 0)

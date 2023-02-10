@@ -1,15 +1,13 @@
 import 'expo-dev-client';
 import * as React from 'react';
 import { createContext, useMemo, useReducer } from 'react';
-import { iew, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AuthContext } from './src/Globals/AuthContext';
-import { NavigationContainer } from '@react-navigation/native';
-import Loading from './src/components/Loading';
-import SignInScreen from './src/screens/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
-import TabNavigator from './src/screens/index';
+// import { AuthContext } from './src/Globals/AuthContext';
+import { Provider } from 'react-redux';
+import AppRoute from './src/navigation/AppRoute';
+import { store } from './src/redux/store';
 
 import { ApolloClient, ApolloProvider,createHttpLink,InMemoryCache } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
@@ -98,64 +96,70 @@ export default function App() {
 
 
   //The useMemo Hook only runs when one of its dependencies update.This can improve performance.
-  const authContext = useMemo(
-    ()=> ({
-      logIn: async (data) => {
-        dispatch({
-          type:'LOG_IN',
-          token: data.signIn
-        });
-      },
-      logOut: ()=> {
-        client.resetStore();
-        dispatch({type: 'LOG_OUT'});
-      },
-      register: async (data) => {
-        dispatch({
-          type:'LOG_IN',
-          token: data.signUp
-        });
-      }
-    }),
-    []              // [],only runs once, on mount
-  );
+  // const authContext = useMemo(
+  //   ()=> ({
+  //     logIn: async (data) => {
+  //       dispatch({
+  //         type:'LOG_IN',
+  //         token: data.signIn
+  //       });
+  //     },
+  //     logOut: ()=> {
+  //       client.resetStore();
+  //       dispatch({type: 'LOG_OUT'});
+  //     },
+  //     register: async (data) => {
+  //       dispatch({
+  //         type:'LOG_IN',
+  //         token: data.signUp
+  //       });
+  //     }
+  //   }),
+  //   []              // [],only runs once, on mount
+  // );
 
   return (
-    <AuthContext.Provider value={authContext} >
-      <ApolloProvider client={client}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {state.isLoading ? (
-              // We haven't finished checking for the token yet
-              <Stack.Screen name="loading" component={Loading} />
-            ) : state.userToken == null ? (
-              <Stack.Group>
-                <Stack.Screen
-                  name="signIn"
-                  component={SignInScreen}
-                  options={{
-                    title: 'Sign In',
-                    // When logging out, a pop animation feels intuitive
-                    animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-                  }}
-                />
-                <Stack.Screen
-                  name="signUp"
-                  component={SignUpScreen}
-                  options={{
-                    title: 'Sign Up',
-                    // When logging out, a pop animation feels intuitive
-                    animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-                  }}
-                />
-              </Stack.Group>
-            ) : (
-              // User is signed in
-              <Stack.Screen name="App" component={TabNavigator} />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-       </ApolloProvider>
-    </AuthContext.Provider>
+    <Provider store={store} >
+      <ApolloProvider client={client} >
+        <AppRoute />
+      </ApolloProvider>
+    </Provider>
   );
+  //   <AuthContext.Provider value={authContext} >
+  //     <ApolloProvider client={client}>
+  //       <NavigationContainer>
+  //         <Stack.Navigator>
+  //           {state.isLoading ? (
+  //             // We haven't finished checking for the token yet
+  //             <Stack.Screen name="loading" component={Loading} />
+  //           ) : state.userToken == null ? (
+  //             <Stack.Group>
+  //               <Stack.Screen
+  //                 name="signIn"
+  //                 component={SignInScreen}
+  //                 options={{
+  //                   title: 'Sign In',
+  //                   // When logging out, a pop animation feels intuitive
+  //                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+  //                 }}
+  //               />
+  //               <Stack.Screen
+  //                 name="signUp"
+  //                 component={SignUpScreen}
+  //                 options={{
+  //                   title: 'Sign Up',
+  //                   // When logging out, a pop animation feels intuitive
+  //                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+  //                 }}
+  //               />
+  //             </Stack.Group>
+  //           ) : (
+  //             // User is signed in
+  //             <Stack.Screen name="App" component={TabNavigator} />
+  //           )}
+  //         </Stack.Navigator>
+  //       </NavigationContainer>
+  //      </ApolloProvider>
+  //   </AuthContext.Provider>
+  // );
 };

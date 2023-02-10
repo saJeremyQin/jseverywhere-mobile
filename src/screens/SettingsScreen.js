@@ -1,26 +1,35 @@
 import React from "react";
 import { useContext } from "react";
-import { View,StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import JereButton from "../components/JereButton";
 import * as SecureStore from 'expo-secure-store' ;
-// import { AuthContext } from "../AuthContext";
-import { AuthContext } from "../Globals/AuthContext";
+import { useDispatch } from "react-redux";
+import { setSignOut } from "../redux/slices";
+import { useSelector } from "react-redux";
+import { selectUserName } from "../redux/slices";
 
 const SettingsScreen = props => {
-    const {logOut} = useContext(AuthContext);
+    const dispatch = useDispatch();
+    // const {logOut} = useContext(AuthContext);
     const signOut = async () => {
         try {
             await SecureStore.deleteItemAsync('userToken');
-            logOut();
+            dispatch(setSignOut());
         } catch(error) {
             console.log('Unable delete token from SecureStore.');
         }
     };
 
+    const yourName = useSelector(selectUserName);
+    console.log(yourName);
+
     return (
         <View style={styles.container}>
-            <JereButton title='SignOut' color='pink' onPress={signOut}/>
+            <React.Fragment>
+                <Text style={{fontSize:22}}>{yourName}, Are you sure to leave?</Text>
+                <JereButton title='SignOut' color='pink' onPress={signOut}/>
+            </React.Fragment>
          </View>
     );
 };
