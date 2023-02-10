@@ -15,9 +15,12 @@ const SettingsScreen = props => {
     // const {logOut} = useContext(AuthContext);
     const signOut = async () => {
         try {
-            await SecureStore.deleteItemAsync('userToken');
-            client.resetStore();
-            dispatch(setSignOut());
+            await SecureStore.deleteItemAsync('userToken').then( 
+                client.resetStore()
+            ).then(
+                dispatch(setSignOut())
+            )         
+
         } catch(error) {
             console.log('Unable delete token from SecureStore.');
         }
