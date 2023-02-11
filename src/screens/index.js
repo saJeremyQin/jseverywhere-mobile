@@ -128,7 +128,7 @@ function SettingsStack () {
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="MyNotes"
       activeColor='#f0f'
       inactiveColor='#555'
       barStyle={{

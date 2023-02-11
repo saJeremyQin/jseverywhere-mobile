@@ -7,8 +7,6 @@ import UserForm from "../components/UserForm";
 import { useMutation, gql, useApolloClient } from "@apollo/client";
 import Loading from "../components/Loading";
 
-// import { useContext } from "react";
-// import { AuthContext } from "../Globals/AuthContext";
 import { useDispatch } from "react-redux";
 import { setSignIn } from "../redux/slices";
 
@@ -23,7 +21,6 @@ const SIGNIN_USER = gql`
 const SignInScreen = props => {
     const dispatch = useDispatch();
 
-    // const {logIn} = useContext(AuthContext);
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's main screen
     const storeToken = async (token) => {

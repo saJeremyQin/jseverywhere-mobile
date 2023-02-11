@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useCallback, useEffect} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { Text, View, StyleSheet } from 'react-native';
 import JereButton from '../components/JereButton';
 import { useQuery, gql } from '@apollo/client';
@@ -36,16 +37,40 @@ const MyNotesScreen = () => {
         
     const dispatch = useDispatch();
 
+    // it is designed to when component unmount, dispatch to setUserInfo
+    // But, it doesn't work, because swithch between tabs won't unmount screen components.
+    // Then, in useFocusEffect(), setUserInfo, also unsuccessful, due to data.me is not ready
+    // useEffect(() => {
+    //     // console.log(`mount user is ${data.me.username}`);
+    //     dispatch(setUserInfo({userName: data.me.username}));
+    //     return () => {
+    //         // console.log(`unmount user is ${data.me.username}`);
+    //     }
+    // }, [])
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //       // Do something when the screen is focused
+    //       dispatch(setUserInfo({userName: data.me.username}));
+    
+    //       return () => {
+    //         // Do something when the screen is unfocused
+    //         // Useful for cleanup functions
+    //         dispatch(setUserInfo({userName: data.me.username}));
+    //       };
+    //     }, [])
+    // );
+
+
+
     if(loading)
         return <Loading />;
     if(error)
         return <Text>Error loading MyNotes--{error.message}</Text>;
 
-
     dispatch(setUserInfo({userName: data.me.username}));
+
     // if the query is successful and there are notes, return the feed of notes
     // else if the query is successful and there aren't notes, display a message
-
     if(data.me.notes.length !== 0)  {
         return <NoteFeed notes={data.me.notes} />;
     } else {
