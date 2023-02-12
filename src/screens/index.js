@@ -7,6 +7,11 @@ import MyNotesScreen from './MyNotesScreen';
 import SettingsScreen from './SettingsScreen';
 import NoteScreen from './NoteScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useQuery, gql } from '@apollo/client';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../redux/slices';
+import Loading from '../components/Loading';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -15,6 +20,15 @@ const feedStack = createNativeStackNavigator();
 const myNotesStack = createNativeStackNavigator();
 const favoritesStack = createNativeStackNavigator();
 const settingsStack = createNativeStackNavigator();
+
+const GET_ME = gql`
+  query me {
+    me {
+      id
+      username
+    }
+  }
+`;
 
 
 function FeedStack () {
@@ -126,9 +140,19 @@ function SettingsStack () {
 }
 
 const TabNavigator = () => {
+  const { data, loading, error } = useQuery(GET_ME);
+  const dispatch = useDispatch();
+
+  if(loading)
+    return <Loading />;
+  if(error)
+    return <Text>Error loading Tabs--{error.message}</Text>;
+
+  console.log(data.me);
+  dispatch(setUserInfo({userName: data.me.username}));
   return (
     <Tab.Navigator
-      initialRouteName="MyNotes"
+      initialRouteName="Feed"
       activeColor='#f0f'
       inactiveColor='#555'
       barStyle={{

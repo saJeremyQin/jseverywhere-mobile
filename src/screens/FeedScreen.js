@@ -1,10 +1,8 @@
 
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import JereButton from '../components/JereButton';
-import NoteFeed from '../components/NoteFeed';
-// import our Apollo libraries
 import { useQuery, gql } from '@apollo/client';
+import NoteFeed from '../components/NoteFeed';
 import Loading from '../components/Loading';
 
 // compose our query
@@ -27,7 +25,7 @@ const GET_NOTES = gql`
 
 const FeedScreen = () => {
     const { data, loading, error } = useQuery(GET_NOTES);
-    // if the data is loading, our app will display a loading indicator
+
     if(loading)
         return <Loading />;
     if(error)

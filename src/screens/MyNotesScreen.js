@@ -35,18 +35,18 @@ const MyNotesScreen = () => {
     const { data, loading, error } = useQuery(GET_MY_NOTES);
     // if the data is loading, our app will display a loading indicator
         
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // it is designed to when component unmount, dispatch to setUserInfo
     // But, it doesn't work, because swithch between tabs won't unmount screen components.
     // Then, in useFocusEffect(), setUserInfo, also unsuccessful, due to data.me is not ready
-    // useEffect(() => {
-    //     // console.log(`mount user is ${data.me.username}`);
-    //     dispatch(setUserInfo({userName: data.me.username}));
-    //     return () => {
-    //         // console.log(`unmount user is ${data.me.username}`);
-    //     }
-    // }, [])
+    useEffect(() => {
+        console.log(`mount user is ${data}`);
+        // dispatch(setUserInfo({userName: data.me.username}));
+        return () => {
+            console.log(`unmount user is ${data}`);
+        }
+    }, [])
     // useFocusEffect(
     //     React.useCallback(() => {
     //       // Do something when the screen is focused
@@ -67,7 +67,7 @@ const MyNotesScreen = () => {
     if(error)
         return <Text>Error loading MyNotes--{error.message}</Text>;
 
-    dispatch(setUserInfo({userName: data.me.username}));
+    // dispatch(setUserInfo({userName: data.me.username}));
 
     // if the query is successful and there are notes, return the feed of notes
     // else if the query is successful and there aren't notes, display a message
