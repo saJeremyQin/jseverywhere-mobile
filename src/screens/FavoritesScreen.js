@@ -28,7 +28,7 @@ const GET_MY_FAVORITES = gql`
 
 const FavoritesScreen = ({navigation}) => {
 
-  // It is not a good place to dispatch(setUserInfo()), FavoriteScreen is
+  // It is not a good idea to dispatch(setUserInfo()) here, FavoriteScreen is
   // parallel to SettingScreen, and it's lifesytle, mount when get focus
   // doesn't unmount until signOut.
 

@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 import Note from '../components/Note';
 import Loading from '../components/Loading';
@@ -24,7 +24,6 @@ const GET_NOTE = gql`
 
 const NoteScreen = ({navigation, route}) => {
     const {id} = route.params;
-
 
     const { data, loading, error } = useQuery(GET_NOTE, {variables:{id}});
     // if the data is loading, our app will display a loading indicator
