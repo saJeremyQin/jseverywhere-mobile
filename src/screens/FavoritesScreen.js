@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { useQuery,gql } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import Loading from '../components/Loading';
 import NoteFeed from '../components/NoteFeed';
-
 
 const GET_MY_FAVORITES = gql`
   query me {
@@ -31,6 +30,8 @@ const FavoritesScreen = ({navigation}) => {
   // It is not a good idea to dispatch(setUserInfo()) here, FavoriteScreen is
   // parallel to SettingScreen, and it's lifesytle, mount when get focus
   // doesn't unmount until signOut.
+  // A simple tab bar on the bottom of the screen that lets you switch between different routes.
+  // Routes are lazily initialized -- their screen components are not mounted until they are first focused.
 
   const { data, loading, error } = useQuery(GET_MY_FAVORITES);
   // if the data is loading, our app will display a loading indicator

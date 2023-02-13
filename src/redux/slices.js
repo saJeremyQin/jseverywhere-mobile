@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { client } from "../Globals/netRequest";
 
 const initialState = {
     isLoggedIn: false,

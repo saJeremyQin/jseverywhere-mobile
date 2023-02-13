@@ -1,12 +1,10 @@
 import React from "react";
-import { View, StyleSheet,Text } from 'react-native';
+import { Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import JereButton from "../components/JereButton";
-import { useNavigation } from "@react-navigation/native";
-import UserForm from "../components/UserForm";
-import { useMutation, gql, useApolloClient } from "@apollo/client";
-import Loading from "../components/Loading";
 
+import Loading from "../components/Loading";
+import UserForm from "../components/UserForm";
+import { useMutation, gql } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { setSignIn } from "../redux/slices";
 
@@ -33,7 +31,6 @@ const SignInScreen = props => {
     
     const [signIn, {loading, error}] = useMutation(SIGNIN_USER, {
         onCompleted: data => {
-
             storeToken(data.signIn);
             dispatch(setSignIn({
                 isLoggedIn: true,

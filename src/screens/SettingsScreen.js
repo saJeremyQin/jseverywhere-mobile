@@ -1,7 +1,5 @@
 import React from "react";
-import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import JereButton from "../components/JereButton";
 import * as SecureStore from 'expo-secure-store' ;
 import { useDispatch, useSelector } from "react-redux";
@@ -19,13 +17,11 @@ const SettingsScreen = props => {
                 dispatch(setSignOut())
             )         
         } catch(error) {
-            console.log('Unable delete token from SecureStore.');
+            console.log('signOut error!');
         }
     };
 
     const yourName = useSelector(selectUserName);
-    console.log(yourName);
-
     return (
         <View style={styles.container}>
             <React.Fragment>

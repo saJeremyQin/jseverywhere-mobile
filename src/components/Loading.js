@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ActivityIndicator, View, StyleSheet, Text } from "react-native";
 
 const Loading = () => {

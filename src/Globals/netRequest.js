@@ -3,9 +3,6 @@ import React from "react";
 import { ApolloClient, ApolloProvider,createHttpLink,InMemoryCache } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 import * as SecureStore from 'expo-secure-store';
-import { useSelector } from "react-redux";
-import { selectUserToken } from "../redux/slices";
-
 
 const API_URI='https://jseverywhere.herokuapp.com/api';
 
@@ -20,7 +17,6 @@ const authLink = setContext(async (_, {headers}) => {
       headers:{
         ...headers,
         authorization: (await SecureStore.getItemAsync('userToken')) || ''   //can't use selector, because the limit of hooks
-        // authorization: token
       }
     };
 });

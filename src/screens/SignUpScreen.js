@@ -1,10 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 import { useMutation, gql } from "@apollo/client";
 import * as SecureStore from 'expo-secure-store';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import UserForm from "../components/UserForm";
-
 import Loading from "../components/Loading";
 
 import { useDispatch } from "react-redux";
@@ -31,7 +29,7 @@ const SignUpScreen = () => {
 
     const [signUp, {data, loading, error}] = useMutation(SIGNUP_USER,{
         onCompleted: data => {
-            // console.log(data);
+
             storeToken(data.signUp);
             dispatch(setSignUp({
                 isLoggedIn: true,

@@ -1,16 +1,17 @@
 import *as React from "react";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState, useEffect } from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+
 import Loading from "../components/Loading";
 import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
-import { NavigationContainer, useTheme } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../redux/slices";
-import * as SecureStore from 'expo-secure-store';
-import { setSignIn } from "../redux/slices";
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn,setSignIn } from "../redux/slices";
+
+import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
-import { useState, useEffect } from 'react';
+
  
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -32,7 +33,7 @@ const AppRoute = () => {
             } finally {
                 // Tell the application to render
                 setAppIsReady(true);
-                // console.log(token);
+
                 dispatch(setSignIn(
                     {
                         isLoggedIn: Boolean(token),
@@ -57,9 +58,7 @@ const AppRoute = () => {
                 isLoggedIn ? <AppNavigator /> : <AuthNavigator />
             }
         </NavigationContainer>
-
     );
-
 }
 
 export default AppRoute;
