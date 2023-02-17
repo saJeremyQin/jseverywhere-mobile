@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 import Loading from '../components/Loading';
 import NoteFeed from '../components/NoteFeed';
@@ -45,8 +45,19 @@ const FavoritesScreen = ({navigation}) => {
   if(data.me.favorites.length !== 0)
       return <NoteFeed notes={data.me.favorites}/>;
   else
-      return <Text style={styles.text}>{data.me.username}, You have no favorites yet</Text>;
-
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>
+              {data.me.username}, You have no favorites yet.
+          </Text>
+          <Text style={{fontSize:20,paddingTop:50}}>
+              To add, Please visit:
+          </Text>
+          <Text style={{fontSize:20}}>
+              https://dulcet-gaufre-c3f6b7.netlify.app/
+          </Text>
+        </View>
+      );
 };
 
 const styles = StyleSheet.create({
@@ -56,7 +67,6 @@ const styles = StyleSheet.create({
       alignItems:'center'
     },
     text:{
-      flex:1,
       justifyContent:'center',
       alignItems:'center',
       fontSize:22,

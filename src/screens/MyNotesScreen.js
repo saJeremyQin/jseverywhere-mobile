@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 import Loading from '../components/Loading';
 import NoteFeed from '../components/NoteFeed';
@@ -49,7 +49,19 @@ const MyNotesScreen = () => {
     if(data.me.notes.length !== 0)  {
         return <NoteFeed notes={data.me.notes} />;
     } else {
-        return <Text style={styles.text}>{data.me.username}, You have no notes yet</Text>;
+        return (
+            <View style={styles.container}>
+                <Text style={styles.text}>
+                    {data.me.username}, You have no notes yet.
+                </Text>
+                <Text style={{fontSize:20,paddingTop:50}}>
+                    To add, Please visit:
+                </Text>
+                <Text style={{fontSize:20}}>
+                    https://dulcet-gaufre-c3f6b7.netlify.app/
+                </Text>
+            </View>
+        );
     }
 };
 
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },   
     text:{
-        flex:1,
+        // flex:1,
         justifyContent:'center',
         alignItems:'center',
         fontSize:22,
