@@ -58,7 +58,7 @@ const MyNotesScreen = () => {
                     To add, Please visit:
                 </Text>
                 <Text style={{fontSize:20}}>
-                    https://dulcet-gaufre-c3f6b7.netlify.app/
+                    https://qindanote.netlify.app/
                 </Text>
             </View>
         );
